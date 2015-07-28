@@ -17,8 +17,6 @@ section{
   display: flex ; width: 100%
 }
 
-
-
 #info > * {
   display: block;
   font-size: large;
@@ -46,8 +44,31 @@ section{
   flex-grow: 3;
 }
 
-span:hover{
-  background-color: #FF00FF
+#calenheader{
+}
+
+#calendardiv{
+  width:90%;
+}
+
+#calendiv{
+  display:inline;
+  width:100%;
+}
+
+#calendiv > *{
+  background-color: #FF00FF;
+  border: 0.5rem solid white;
+  box-sizing: border-box;
+  padding: 0.25rem;
+}
+
+#calenpadl{
+  width: 10%;
+}
+
+#calenpadr{
+  width: 10%;
 }
 
 #cloud_img{
