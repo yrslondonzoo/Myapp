@@ -46,6 +46,10 @@ section{
   flex-grow: 3;
 }
 
+span:hover{
+  background-color: #FF00FF
+}
+
 #cloud_img{
   flex-grow: 1;
 }
