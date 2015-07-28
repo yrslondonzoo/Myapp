@@ -1,7 +1,7 @@
  <!DOCTYPE HTML>
  <head>
 	 <title>um, xxcalendar thing</title>
-	 <link rel="stylesheet" href="/css/master.css" media="screen" title="no title" charset="utf-8">
+	 <link rel="stylesheet" href="css/master.css" media="screen" title="no title" charset="utf-8">
 </head>
 <body>
 <main>
