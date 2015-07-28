@@ -50,8 +50,12 @@ section{
   flex-grow: 1;
 }
 
-#map{
+#maps{
   display: inline;
   background-color: #e3f1d7
   font-size: large;
+}
+
+#map{
+  height: 240px;
 }

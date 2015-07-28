@@ -4,6 +4,8 @@
 	 <link rel="stylesheet" href="css/master.css" media="screen" title="no title" charset="utf-8">
    <link rel="stylesheet" href="css/leaflet.css" />
    <script src="js/leaflet.js"></script>
+   <script src='https://api.tiles.mapbox.com/mapbox.js/v2.2.1/mapbox.js'></script>
+   <link href='https://api.tiles.mapbox.com/mapbox.js/v2.2.1/mapbox.css' rel='stylesheet' />
 </head>
 <body>
 <main>
@@ -26,13 +28,24 @@
 	</div>
 </section>
 <section id = "sect2">
-	<div id="map">
+	<div id="maps">
     MAP
-    <img src="images/mapsplaceholder.png" height="410" width="951">
+    <div id="map">
+
+    </div>
 	</div>
 	<div id = "share">
 		share
 	</div>
 </section>
 </main>
+<script>
+  var map = L.map('map').setView([51.505, -0.09], 13);
+  L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={pk.eyJ1IjoiYmlnYm95MTI3MSIsImEiOiJmZTQyMzc1OGQwNGUxYzcyNjZjODZkN2UwMTk4YjExOCJ9.3-tRVlFaxtt4KRQg0cu_IQ}', {
+    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+    maxZoom: 18,
+    id: 'bigboy1271.d02976aa',
+    accessToken: 'pk.eyJ1IjoiYmlnYm95MTI3MSIsImEiOiJmZTQyMzc1OGQwNGUxYzcyNjZjODZkN2UwMTk4YjExOCJ9.3-tRVlFaxtt4KRQg0cu_IQ'
+}).addTo(map);
+</script>
 </body>
