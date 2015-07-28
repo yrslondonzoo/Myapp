@@ -13,7 +13,11 @@ section > * {
   padding: 1rem;
 }
 
-section { display: flex ; width: 100% }
+section{
+  display: flex ; width: 100%
+}
+
+
 
 #info > * {
   display: block;
@@ -29,12 +33,25 @@ section { display: flex ; width: 100% }
   flex-grow: 1;
 }
 
+.weathertime{
+  box-sizing: border-box;
+  padding: 0.25rem;
+}
+
 #weatherdata li{
   font-size:21px;
 }
 
 #weatherdata{
-flex-grow: 3;
+  flex-grow: 3;
 }
 
-#cloud_img { flex-grpw: 1; }
+#cloud_img{
+  flex-grow: 1;
+}
+
+#map{
+  display: inline;
+  background-color: #e3f1d7
+  font-size: large;
+}
