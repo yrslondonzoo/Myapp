@@ -56,7 +56,7 @@ var mapboxTiles = L.tileLayer('https://api.mapbox.com/v4/bigboy1271.n174gho3/{z}
 
 var map = L.map('map')
     .addLayer(mapboxTiles)
-    .setView([42.3610, -71.0587], 15);
+    .setView([52.4778726, -1.8991396], 15);
 </script>
 <!--<script>
   var map = L.map('map').setView([51.505, -0.09], 13);
