@@ -6,10 +6,10 @@
   $n = 1438462899; // 02n 99 seconds off
   $n = 1438236000; // 10d
   $n = 1438238000; // 10d 2000 seconds off
-
+function parseweather($n){
   $url = 'http://api.openweathermap.org/data/2.5/forecast?lat=52.48&lon=-1.87';
   // For repetitive testing
-  $url = 'T:/Charles/misc90/stemnet/yrs/forecast.json';
+  $url = 'C:/xampp/htdocs/Myapp/php/forecast.json';
 
   // http://www.ietf.org/rfc/rfc4627.txt
   // JSON text SHALL be encoded in Unicode.  The default encoding is UTF-8.
@@ -22,6 +22,7 @@
   // var_dump($matches);
 
   $result = 'none';
+  $first = 'none';
 
   // $matches[0] = all the parts that matched (not used)
   // $matches[1] = all the dt values in order
@@ -31,8 +32,17 @@
     if (abs($value - $n) < 90 * 60) {
       $result = $matches[2][$key];
     }
+    if ($first == 'none') {
+      $first = $matches[2][$key];
+    }
   }
+  if ($result == 'none') { return $first; }
+  return $result;
+}
 
+$n = date_timestamp_get(date_create('2015-07-29T13:14:33'));
+$n = time();
+$icon = parseweather($n);
 ?>
 <html>
 <head>
@@ -41,7 +51,13 @@
 <title>Weather parse test</title>
 </head>
 <body>
-The weather at <?php echo $n ?> will be [<?php echo $result ?>]!!
+The weather at <?php echo date('r', $n) ?> will be [<?php if ($icon == 'none') {
+  echo "No forecast";
+}
+else {
+   echo $icon;
+}
+?>]!!
 
 </body>
 </html>
