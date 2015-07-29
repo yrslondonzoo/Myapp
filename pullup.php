@@ -30,7 +30,7 @@
 		<div id="weatherdata">
 			<ul>
 				<li class="weathertime">12:00   <img src ="images/clouds.png" height="42px" width="42px"></li>
-				<li class="weathertime">15:00   <img src="images/Lightning.png" height ="42px" width="42px"</li>
+				<li class="weathertime">15:00   <img src="images/Lightning.png" height ="42px" width="42px"></li>
 			</ul>
 		</div>
 	</div>
@@ -39,14 +39,25 @@
 	<div id="maps">
     MAP
     <div id="map">
-      <iframe width='100%' height='250px' frameBorder='0' src='https://a.tiles.mapbox.com/v4/bigboy1271.d02976aa/attribution,zoompan,zoomwheel,geocoder,share.html?access_token=pk.eyJ1IjoiYmlnYm95MTI3MSIsImEiOiJmZTQyMzc1OGQwNGUxYzcyNjZjODZkN2UwMTk4YjExOCJ9.3-tRVlFaxtt4KRQg0cu_IQ'></iframe>
-    </div>
+      <!--<iframe width='100%' height='250px' frameBorder='0' src='https://a.tiles.mapbox.com/v4/bigboy1271.d02976aa/attribution,zoompan,zoomwheel,geocoder,share.html?access_token=pk.eyJ1IjoiYmlnYm95MTI3MSIsImEiOiJmZTQyMzc1OGQwNGUxYzcyNjZjODZkN2UwMTk4YjExOCJ9.3-tRVlFaxtt4KRQg0cu_IQ'></iframe>
+    --></div>
 	</div>
 	<div id = "share">
-		<div class="fb-like" data-href="https://www.facebook.com/pages/Cweather-Ultd/400981636759682" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+		<div style="width:400px, height:250px" class="fb-like" data-href="https://www.facebook.com/pages/Cweather-Ultd/400981636759682" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
 	</div>
 </section>
 </main>
+<script>
+L.mapbox.accessToken = 'pk.eyJ1IjoiYmlnYm95MTI3MSIsImEiOiJmZTQyMzc1OGQwNGUxYzcyNjZjODZkN2UwMTk4YjExOCJ9.3-tRVlFaxtt4KRQg0cu_IQ';
+// Replace 'mapbox.streets' with your map id.
+var mapboxTiles = L.tileLayer('https://api.mapbox.com/v4/bigboy1271.n174gho3/{z}/{x}/{y}.png?access_token=' + L.mapbox.accessToken, {
+    attribution: '<a href="http://www.mapbox.com/about/maps/" target="_blank">Terms &amp; Feedback</a>'
+});
+
+var map = L.map('map')
+    .addLayer(mapboxTiles)
+    .setView([42.3610, -71.0587], 15);
+</script>
 <!--<script>
   var map = L.map('map').setView([51.505, -0.09], 13);
   L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={pk.eyJ1IjoiYmlnYm95MTI3MSIsImEiOiJmZTQyMzc1OGQwNGUxYzcyNjZjODZkN2UwMTk4YjExOCJ9.3-tRVlFaxtt4KRQg0cu_IQ}', {
