@@ -24,7 +24,7 @@
      // http://uk.php.net/manual/en/function.file-get-contents.php
      $page = file_get_contents($url, false, NULL, -1, 100000);
 
-     preg_match_all('/"dt":(\d+),.*?"icon":"(\d+[dn])"/', $page, $matches);
+     preg_match_all('/"dt":(\d+),.*?"description":"([^"]+?)"/', $page, $matches);
 
      // print_r($matches);
      // var_dump($matches);
@@ -51,6 +51,7 @@
    $n = date_timestamp_get(date_create('2015-07-29T13:14:33'));
    $n = time();
    $icon = parseweather($n);
+   $filename = str_replace(' ', '', $icon) . 'png';
    ?>
 </head>
 <body>
@@ -80,6 +81,9 @@
         }
         else {
            echo $icon;
+           $filename = str_replace(' ', '', $icon) . '.png';
+           echo ' ' . $filename;
+           echo '<img src="images/'.$filename.'" height="42" width="42">';
         }
         ?>]!!</li>
 				<li class="weathertime">15:00   <img src="images/Lightning.png" height ="42px" width="42px"></li>
