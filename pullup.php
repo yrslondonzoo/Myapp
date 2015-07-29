@@ -30,6 +30,7 @@
      // var_dump($matches);
 
      $result = 'none';
+     $first = 'none';
 
      // $matches[0] = all the parts that matched (not used)
      // $matches[1] = all the dt values in order
@@ -39,9 +40,16 @@
        if (abs($value - $n) < 90 * 60) {
          $result = $matches[2][$key];
        }
+       if ($first == 'none') {
+         $first = $matches[2][$key];
+       }
      }
+     if ($result == 'none') { return $first; }
      return $result;
    }
+
+   $n = date_timestamp_get(date_create('2015-07-29T13:14:33'));
+   $n = time();
    $icon = parseweather($n);
    ?>
 </head>
@@ -67,7 +75,13 @@
 		</div>
 		<div id="weatherdata">
 			<ul>
-				<li class="weathertime"><!--12:00   <img src ="images/clouds.png" height="42px" width="42px">-->The weather at <?php echo $n ?> will be [<?php echo $icon ?>]!!</li>
+				<li class="weathertime"><!--12:00   <img src ="images/clouds.png" height="42px" width="42px">-->The weather at <?php echo date('r', $n) ?> will be [<?php if ($icon == 'none') {
+          echo "No forecast";
+        }
+        else {
+           echo $icon;
+        }
+        ?>]!!</li>
 				<li class="weathertime">15:00   <img src="images/Lightning.png" height ="42px" width="42px"></li>
 			</ul>
 		</div>
