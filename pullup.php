@@ -16,6 +16,13 @@
    if (isset($_GET["evloc"])) {
      $evloc = $_GET["evloc"];
    }
+   if (isset($_GET["evstart"])) {
+     $evstart = $_GET["evstart"];
+   }
+   if (isset($_GET["evend"])) {
+     $evend = $_GET["evend"];
+   }
+
 
 
 
@@ -66,7 +73,7 @@
 
    // END OF FUCTION
 
-   $n = date_timestamp_get(date_create('2015-08-'.$evdate));
+   $n = date_timestamp_get(date_create('2015-08-'.$evdate.'T'.$evstart));
    $icon = parseweather($n);
    $filename = str_replace(' ', '', $icon) . '' . 'png';
 
@@ -90,9 +97,10 @@
 <main>
 <section id = "sect1">
 	<div id = "info">
-		<span id="date"><?php echo date('d F', $n); ?></span>
-		<span id="title"><?php echo $evname ; ?></span>
-		<span id="location"><?php echo $evloc ; ?></span>
+    <div id='backdiv'><a id='backlink' href='index.php'>Back to Calendar</a></div>
+		<span id="date">On the<br><?php echo date('d F', $n); ?></span>
+		<span id="title">You have<br><?php echo $evname ; ?></span>
+		<span id="location">At<br> <?php echo $evloc ; ?></span>
 	</div>
 	<div id = "weather">
 		<div id="weatherinfo">
@@ -123,7 +131,7 @@
     --></div>
 	</div>
 	<div id = "share">
-		<div style="width:400px, height:250px" class="fb-like" data-href="https://www.facebook.com/pages/Cweather-Ultd/400981636759682" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+		<div style="width:50%, height:250px" class="fb-like" data-href="https://www.facebook.com/pages/Cweather-Ultd/400981636759682" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
 	</div>
 </section>
 </main>

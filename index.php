@@ -45,9 +45,9 @@
      // for testing, we arbitrarily say there are events on the 2nd, 4th and 21st
      // of every month
      function hasevent($d, $m) {
-       $events = array(2 => array('Brad\'s meetup', 'Brad\'s secret den'),
-         4 => array('Festival of Code 2015', 'Birmingham'),
-         21 => array('Loudshirts loud gig of loudness', 'The old moot'));
+       $events = array(2 => array('Brad\'s meetup', 'Brad\'s secret den', '09:00', '15:00'),
+         4 => array('Festival of Code 2015', 'Birmingham', '12:00', '18:00'),
+         21 => array('Loudshirts loud gig of loudness', 'The old moot', '15:00', '21:00'));
        if (isset($events[$d])) {
          return $events[$d];
        }
@@ -99,7 +99,12 @@
         $evarr= hasevent($day, $month);
         if ($evarr !== FALSE) {
           $class = 'eventday';
-          $p = '<a href="pullup.php?d='.$day.'&evname='.urlencode($evarr[0]).'&evloc='.urlencode($evarr[1]).'">'.$day.'</a>';
+          $p = '<a href="pullup.php?d='.$day.
+          '&evname='.urlencode($evarr[0]).
+          '&evloc='.urlencode($evarr[1]).
+          '&evstart='.urlencode($evarr[2]).
+          '&evend='.urlencode($evarr[3]).
+          '">'.$day.'</a>';
         } else {
           $class = '';
           if ($day < 1 || $day > $lastday) {
