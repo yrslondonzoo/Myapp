@@ -65,9 +65,10 @@
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 <main>
-  <div>
-    <h1 id="calenheader">Your Calendar!</h1>
+  <div id="calenheader">
+    <h1>Your Calendar!</h1>
   </div>
+  <div id='calendardiv'>
   <?php
     echo '<p class="calpreamble">'.PHP_EOL;
     if ($month > 1) {
