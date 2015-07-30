@@ -141,9 +141,6 @@
 	</div>
 </section>
 <section id = "sect2">
-  <div id = "share">
-		<div style="width:50%, height:250px" class="fb-like" data-href="https://www.facebook.com/pages/Cweather-Ultd/400981636759682" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
-	</div>
 	<div id="maps">
     MAP
     <div id="map">
