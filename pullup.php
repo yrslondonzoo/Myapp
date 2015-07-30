@@ -83,6 +83,14 @@
    else {
    $day = 'n';
    }
+   $nend = date_timestamp_get(date_create('2015-08-'.$evdate.'T'.$evend));
+   $iconend = parseweather($nend);
+   if (substr_count($iconday, 'd')== 1) {
+     $dayend = 'd';
+   }
+   else {
+   $dayend = 'n';
+   }
    ?>
 </head>
 <body>
@@ -97,10 +105,10 @@
 <main>
 <section id = "sect1">
 	<div id = "info">
-    <div id='backdiv'><a id='backlink' href='index.php'>Back to Calendar</a></div>
-		<span id="date">On the<br><?php echo date('d F', $n); ?></span>
-		<span id="title">You have<br><?php echo $evname ; ?></span>
-		<span id="location">At<br> <?php echo $evloc ; ?></span>
+    <div id='backdiv'><a id='backlink' href='index.php'>Back<br> to<br> Calendar</a></div>
+		<span id="date">On the:<br><?php echo date('d F', $n); ?></span>
+		<span id="title">You have:<br><?php echo $evname ; ?></span>
+		<span id="location">At:<br> <?php echo $evloc ; ?></span>
 	</div>
 	<div id = "weather">
 		<div id="weatherinfo">
@@ -108,7 +116,7 @@
 		</div>
 		<div id="weatherdata">
 			<ul>
-				<li class="weathertime"><!--12:00   <img src ="images/clouds.png" height="42px" width="42px">-->The weather at <?php echo date('r', $n) ?> will be <?php if ($icon == 'none') {
+				<li class="weathertime"><!--12:00   <img src ="images/clouds.png" height="42px" width="42px">--><?php echo date('H:i', $n) ?>: <?php if ($icon == 'none') {
           echo "No forecast";
         }
         else {
@@ -117,21 +125,30 @@
            // echo ' ' . $filename;
            echo '<img src="images/'.$filename.'" height="42" width="42">';
         }
-        ?>!!</li>
-				<li class="weathertime">15:00   <img src="images/Lightning.png" height ="42px" width="42px"></li>
+        ?></li>
+				<li class="weathertime"><?php echo date('H:i', $nend) ?>: <?php if ($icon == 'none') {
+          echo "No forecast";
+        }
+        else {
+           echo $iconend;
+           $filename = str_replace(' ', '', $iconend) . $day . '.png';
+           // echo ' ' . $filename;
+           echo '<img src="images/'.$filename.'" height="42" width="42">';
+        }
+        ?></li>
 			</ul>
 		</div>
 	</div>
 </section>
 <section id = "sect2">
+  <div id = "share">
+		<div style="width:50%, height:250px" class="fb-like" data-href="https://www.facebook.com/pages/Cweather-Ultd/400981636759682" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+	</div>
 	<div id="maps">
     MAP
     <div id="map">
       <!--<iframe width='100%' height='250px' frameBorder='0' src='https://a.tiles.mapbox.com/v4/bigboy1271.d02976aa/attribution,zoompan,zoomwheel,geocoder,share.html?access_token=pk.eyJ1IjoiYmlnYm95MTI3MSIsImEiOiJmZTQyMzc1OGQwNGUxYzcyNjZjODZkN2UwMTk4YjExOCJ9.3-tRVlFaxtt4KRQg0cu_IQ'></iframe>
     --></div>
-	</div>
-	<div id = "share">
-		<div style="width:50%, height:250px" class="fb-like" data-href="https://www.facebook.com/pages/Cweather-Ultd/400981636759682" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
 	</div>
 </section>
 </main>
