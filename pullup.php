@@ -1,11 +1,13 @@
  <!DOCTYPE HTML>
  <head>
 	 <title>um, xxcalendar thing</title>
-	 <link rel="stylesheet" href="css/master.css" media="screen" title="no title" charset="utf-8">
-   <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />
-   <script src="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
-   <script src='https://api.tiles.mapbox.com/mapbox.js/v2.2.1/mapbox.js'></script>
-   <link href='https://api.tiles.mapbox.com/mapbox.js/v2.2.1/mapbox.css' rel='stylesheet' />
+   <link rel="stylesheet" href="css/master.css" media="screen" title="no title" charset="utf-8">
+   <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+   <link rel="stylesheet" href="leaflet-routing-machine.css" />
+   <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+   <link rel="stylesheet" href="leaflet-routing-machine.css" />
+   <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+   <script src="leaflet-routing-machine.js"></script>
    <?php
    if (isset($_GET["d"]) && is_numeric($_GET["d"])) {
      $evdate = $_GET["d"];
@@ -140,26 +142,37 @@
 		</div>
 	</div>
 </section>
+<section>
+  <div id = "share">
+		<div style="width:100%, height:250px" class="fb-like" data-href="https://www.facebook.com/pages/Cweather-Ultd/400981636759682" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+	</div>
+</section>
 <section id = "sect2">
 	<div id="maps">
     MAP
-    <div id="map">
-      <!--<iframe width='100%' height='250px' frameBorder='0' src='https://a.tiles.mapbox.com/v4/bigboy1271.d02976aa/attribution,zoompan,zoomwheel,geocoder,share.html?access_token=pk.eyJ1IjoiYmlnYm95MTI3MSIsImEiOiJmZTQyMzc1OGQwNGUxYzcyNjZjODZkN2UwMTk4YjExOCJ9.3-tRVlFaxtt4KRQg0cu_IQ'></iframe>
-    --></div>
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+    <script src="leaflet-routing-machine.js"></script>
+    <div id="map" class="map"><script>
+  var map = L.map('map');
+
+L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap contributors'
+}).addTo(map);
+
+L.Routing.control({
+    waypoints: [
+        L.latLng(51.5388824, -0.100131),
+        L.latLng(52.4774376, -1.8636315)
+    ],
+    routeWhileDragging: true
+}).addTo(map);
+</script>
+
+    </script></div>
+    <div id="Routing"></div>
 	</div>
 </section>
 </main>
-<script>
-L.mapbox.accessToken = 'pk.eyJ1IjoiYmlnYm95MTI3MSIsImEiOiJmZTQyMzc1OGQwNGUxYzcyNjZjODZkN2UwMTk4YjExOCJ9.3-tRVlFaxtt4KRQg0cu_IQ';
-// Replace 'mapbox.streets' with your map id.
-var mapboxTiles = L.tileLayer('https://api.mapbox.com/v4/bigboy1271.n174gho3/{z}/{x}/{y}.png?access_token=' + L.mapbox.accessToken, {
-    attribution: '<a href="http://www.mapbox.com/about/maps/" target="_blank">Terms &amp; Feedback</a>'
-});
-
-var map = L.map('map')
-    .addLayer(mapboxTiles)
-    .locate({setView: true})
-</script>
 <!--<script>
   var map = L.map('map').setView([51.505, -0.09], 13);
   L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={pk.eyJ1IjoiYmlnYm95MTI3MSIsImEiOiJmZTQyMzc1OGQwNGUxYzcyNjZjODZkN2UwMTk4YjExOCJ9.3-tRVlFaxtt4KRQg0cu_IQ}', {
