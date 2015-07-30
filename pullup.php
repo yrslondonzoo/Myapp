@@ -24,9 +24,12 @@
    if (isset($_GET["evend"])) {
      $evend = $_GET["evend"];
    }
-
-
-
+   if (isset($_GET["evlat"])) {
+     $evlat = $_GET["evlat"];
+   }
+   if (isset($_GET["evlong"])) {
+     $evlong = $_GET["evlong"];
+   }
 
      $n = 1438441200; // 10d
      $n = 1438462800; // 02n
@@ -144,7 +147,7 @@
 </section>
 <section>
   <div id = "share">
-		<div style="width:100%, height:250px" class="fb-like" data-href="https://www.facebook.com/pages/Cweather-Ultd/400981636759682" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+		<div class="fb-like" data-href="https://www.facebook.com/pages/Cweather-Ultd/400981636759682" data-width="225" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
 	</div>
 </section>
 <section id = "sect2">
@@ -161,8 +164,8 @@ L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 
 L.Routing.control({
     waypoints: [
-        L.latLng(51.5388824, -0.100131),
-        L.latLng(52.4774376, -1.8636315)
+        L.latLng(<?php echo $evlat; ?>, <?php echo $evlong ?>),
+        L.latLng(52.478779,-1.910645)
     ],
     routeWhileDragging: true
 }).addTo(map);

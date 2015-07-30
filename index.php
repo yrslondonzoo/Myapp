@@ -45,9 +45,9 @@
      // for testing, we arbitrarily say there are events on the 2nd, 4th and 21st
      // of every month
      function hasevent($d, $m) {
-       $events = array(2 => array('Brad\'s meetup', 'Brad\'s secret den', '09:00', '15:00'),
-         4 => array('Festival of Code 2015', 'Birmingham', '12:00', '18:00'),
-         21 => array('Loudshirts loud gig of loudness', 'The old moot', '15:00', '21:00'));
+       $events = array(2 => array('Brad\'s meetup', 'Brad\'s secret den', '09:00', '15:00', '51.5', '-0.1'),
+         4 => array('Festival of Code 2015', 'Birmingham', '12:00', '18:00','55.9410655','-3.2053836' ),
+         21 => array('Nefarious Russian Hacker Meetup', 'Chernobyl', '15:00', '21:00','51.2752985','30.2218855'));
        if (isset($events[$d])) {
          return $events[$d];
        }
@@ -105,6 +105,8 @@
           '&evloc='.urlencode($evarr[1]).
           '&evstart='.urlencode($evarr[2]).
           '&evend='.urlencode($evarr[3]).
+          '&evlat='.urlencode($evarr[4]).
+          '&evlong='.urlencode($evarr[5]).
           '">'.$day.'</a>';
         } else {
           $class = '';

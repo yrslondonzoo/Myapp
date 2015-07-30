@@ -1,6 +1,6 @@
 
 
-@media only screen and (min-width: 1px) and (max-width:800px) {
+@media only screen and (min-width:1px) and (max-width:800px) {
 
   .leaflet-routing-container{
     width: 320px;
@@ -11,6 +11,8 @@
   }
 
 }
+
+
 
 
 .leaflet-routing-container {
