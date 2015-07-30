@@ -57,6 +57,13 @@ The weather at <?php echo date('r', $n) ?> will be [<?php if ($icon == 'none') {
 else {
    echo $icon;
 }
+
+if (substr_count('d', $icon)== 1) {
+  echo day;
+}
+else {
+echo night;
+}
 ?>]!!
 
 </body>

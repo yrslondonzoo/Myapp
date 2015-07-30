@@ -7,6 +7,17 @@
    <script src='https://api.tiles.mapbox.com/mapbox.js/v2.2.1/mapbox.js'></script>
    <link href='https://api.tiles.mapbox.com/mapbox.js/v2.2.1/mapbox.css' rel='stylesheet' />
    <?php
+   if (isset($_GET["d"]) && is_numeric($_GET["d"])) {
+     $evdate = $_GET["d"];
+   }
+   if (isset($_GET["evname"])) {
+     $evname = $_GET["evname"];
+   }
+   if (isset($_GET["evloc"])) {
+     $evloc = $_GET["evloc"];
+   }
+
+
 
      $n = 1438441200; // 10d
      $n = 1438462800; // 02n
@@ -14,17 +25,19 @@
      $n = 1438462899; // 02n 99 seconds off
      $n = 1438236000; // 10d
      $n = 1438238000; // 10d 2000 seconds off
+     // START OF FUNCTION
    function parseweather($n){
+     global $iconday;
      $url = 'http://api.openweathermap.org/data/2.5/forecast?lat=52.48&lon=-1.87';
      // For repetitive testing
      $url = 'C:/xampp/htdocs/Myapp/php/forecast.json';
-
+     // PLEASE MIND THE GAP
      // http://www.ietf.org/rfc/rfc4627.txt
      // JSON text SHALL be encoded in Unicode.  The default encoding is UTF-8.
      // http://uk.php.net/manual/en/function.file-get-contents.php
      $page = file_get_contents($url, false, NULL, -1, 100000);
 
-     preg_match_all('/"dt":(\d+),.*?"description":"([^"]+?)"/', $page, $matches);
+     preg_match_all('/"dt":(\d+),.*?"description":"([^"]+?)".*?"icon":"(\d+[dn])"/', $page, $matches);
 
      // print_r($matches);
      // var_dump($matches);
@@ -34,24 +47,35 @@
 
      // $matches[0] = all the parts that matched (not used)
      // $matches[1] = all the dt values in order
-     // $matches[2] = all the icon values in the same order
+     // $matches[2] = all the description values in the same order
+     // $matches[3] = all the icon values in the same order
      foreach ($matches[1] as $key => $value) {
        // within 1.5 hours
        if (abs($value - $n) < 90 * 60) {
          $result = $matches[2][$key];
+         $iconday = $matches[3][$key];
        }
        if ($first == 'none') {
          $first = $matches[2][$key];
+         $iconday = $matches[3][$key];
        }
      }
      if ($result == 'none') { return $first; }
      return $result;
    }
 
-   $n = date_timestamp_get(date_create('2015-07-29T13:14:33'));
-   $n = time();
+   // END OF FUCTION
+
+   $n = date_timestamp_get(date_create('2015-08-'.$evdate));
    $icon = parseweather($n);
-   $filename = str_replace(' ', '', $icon) . 'png';
+   $filename = str_replace(' ', '', $icon) . '' . 'png';
+
+   if (substr_count($iconday, 'd')== 1) {
+     $day = 'd';
+   }
+   else {
+   $day = 'n';
+   }
    ?>
 </head>
 <body>
@@ -66,9 +90,9 @@
 <main>
 <section id = "sect1">
 	<div id = "info">
-		<span id="date">1st</span>
-		<span id="title">Brad's Great Meetup</span>
-		<span id="location">London Zoo</span>
+		<span id="date"><?php echo date('d F', $n); ?></span>
+		<span id="title"><?php echo $evname ; ?></span>
+		<span id="location"><?php echo $evloc ; ?></span>
 	</div>
 	<div id = "weather">
 		<div id="weatherinfo">
@@ -76,16 +100,16 @@
 		</div>
 		<div id="weatherdata">
 			<ul>
-				<li class="weathertime"><!--12:00   <img src ="images/clouds.png" height="42px" width="42px">-->The weather at <?php echo date('r', $n) ?> will be [<?php if ($icon == 'none') {
+				<li class="weathertime"><!--12:00   <img src ="images/clouds.png" height="42px" width="42px">-->The weather at <?php echo date('r', $n) ?> will be <?php if ($icon == 'none') {
           echo "No forecast";
         }
         else {
            echo $icon;
-           $filename = str_replace(' ', '', $icon) . '.png';
-           echo ' ' . $filename;
+           $filename = str_replace(' ', '', $icon) . $day . '.png';
+           // echo ' ' . $filename;
            echo '<img src="images/'.$filename.'" height="42" width="42">';
         }
-        ?>]!!</li>
+        ?>!!</li>
 				<li class="weathertime">15:00   <img src="images/Lightning.png" height ="42px" width="42px"></li>
 			</ul>
 		</div>
