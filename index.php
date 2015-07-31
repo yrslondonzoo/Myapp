@@ -2,13 +2,8 @@
  <head>
 	 <title>um, xxcalendar thing</title>
 	 <link rel="stylesheet" href="css/master.css" media="screen" title="no title" charset="utf-8">
-   <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />
-   <script src="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
-   <script src='https://api.tiles.mapbox.com/mapbox.js/v2.2.1/mapbox.js'></script>
-   <link href='https://api.tiles.mapbox.com/mapbox.js/v2.2.1/mapbox.css' rel='stylesheet' />
+   <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:600,900&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-   <script src='https://api.mapbox.com/mapbox.js/v2.2.1/mapbox.js'></script>
-   <link href='https://api.mapbox.com/mapbox.js/v2.2.1/mapbox.css' rel='stylesheet' />
    <?php
 
      // default is August
@@ -72,14 +67,16 @@
   <?php
     echo '<p class="calpreamble">'.PHP_EOL;
     if ($month > 1) {
-      echo '<a href="'.$_SERVER["PHP_SELF"].'?m='.($month - 1).'">Previous</a>'.PHP_EOL;
+      echo '<a href="'.$_SERVER["PHP_SELF"].'?m='.($month - 1).'"><div class="leftbutton"></div></a>'.PHP_EOL;
     } else {
       echo 'Previous'.PHP_EOL;
     }
     // name of current month
+    echo '<span>';
     echo ' '.date('F', $thismonth).' 2015 ';
+    echo '</span>';
     if ($month < 12) {
-      echo '<a href="'.$_SERVER["PHP_SELF"].'?m='.($month + 1).'">Next</a>'.PHP_EOL;
+      echo '<a href="'.$_SERVER["PHP_SELF"].'?m='.($month + 1).'"><div class="rightbutton"></div></a>'.PHP_EOL;
     } else {
       echo 'Next'.PHP_EOL;
     }
@@ -100,7 +97,7 @@
         $evarr= hasevent($day, $month);
         if ($evarr !== FALSE) {
           $class = 'eventday';
-          $p = '<a href="pullup.php?d='.$day.
+          $p = '<a class="anchor" href="pullup.php?d='.$day.
           '&evname='.urlencode($evarr[0]).
           '&evloc='.urlencode($evarr[1]).
           '&evstart='.urlencode($evarr[2]).
@@ -109,7 +106,7 @@
           '&evlong='.urlencode($evarr[5]).
           '">'.$day.'</a>';
         } else {
-          $class = '';
+          $class = 'eventistrue';
           if ($day < 1 || $day > $lastday) {
             // off the start or end of the month
             $p = '';

@@ -3,6 +3,7 @@
 	 <title>um, xxcalendar thing</title>
    <link rel="stylesheet" href="css/master.css" media="screen" title="no title" charset="utf-8">
    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+   <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:600,900&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
    <link rel="stylesheet" href="leaflet-routing-machine.css" />
    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
    <link rel="stylesheet" href="leaflet-routing-machine.css" />
