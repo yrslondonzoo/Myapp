@@ -115,6 +115,22 @@
 		<span id="title">You have:<br><?php echo $evname ; ?></span>
 		<span id="location">At:<br> <?php echo $evloc ; ?></span>
 	</div>
+  <!--<script>
+var x = document.getElementById("demo");
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+        alert(coords.latitude)
+        alert(coords.longitude)
+    } else {
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+}
+function showPosition(position) {
+    x.innerHTML = "Latitude: " + position.coords.latitude +
+    "<br>Longitude: " + position.coords.longitude;
+}
+  </script>-->
 	<div id = "weather">
 		<div id="weatherinfo">
 			weather
@@ -164,8 +180,10 @@ L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 
 L.Routing.control({
     waypoints: [
-        L.latLng(<?php echo $evlat; ?>, <?php echo $evlong ?>),
-        L.latLng(52.478779,-1.910645)
+        L.latLng( 52.478779, -1.910645
+
+        ),
+        L.latLng(<?php echo $evlat ?>,<?php echo $evlong ?>)
     ],
     routeWhileDragging: true
 }).addTo(map);
@@ -175,6 +193,7 @@ L.Routing.control({
     <div id="Routing"></div>
 	</div>
 </section>
+</script>
 </main>
 <!--<script>
   var map = L.map('map').setView([51.505, -0.09], 13);
