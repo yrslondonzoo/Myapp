@@ -174,6 +174,11 @@ function showPosition(position) {
     <script src="leaflet-routing-machine.js"></script>
     <div id="map" class="map"><script>
   var map = L.map('map');
+  map.locate({setView:true});
+  function onLocationFound(e) {
+    var coordies = e.latlng;
+    window.alert(coordies);
+  }
 
 L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
     attribution: '© OpenStreetMap contributors'
